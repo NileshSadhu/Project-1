@@ -1,118 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import InputBox from './components/InputBox';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const App = () => {
+    const [bgColor, setBgColor] = useState('#F1FCFD');
+    const [headColor, setheadColor] = useState('#4D6DE3');
+    const [mode, setMode] = useState('🌑');
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+    function toogleMode() {
+        setBgColor((prevColor) => (prevColor === '#F1FCFD' ? '#393737' : '#F1FCFD'));
+        setheadColor((prevheadColor) => (prevheadColor === '#4D6DE3' ? '#1A1A19' : '#4D6DE3'));
+        setMode((prevMode) => (prevMode === '🌑' ? '☀️' : '🌑'))
+    }
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    return (
+        <View style={[styles.container, { backgroundColor: bgColor }]}>
+            <View style={[styles.TopBox, {backgroundColor: headColor}]}>
+                <View>
+                    <Text style={[styles.h1, {color: '#FFFFFF'}]}>Add Tasks :</Text>
+                    <Text style={[styles.h2, {color: '#FFFFFF'}]}>My first Project</Text>
+                </View>
+                <View>
+                    <TouchableOpacity  style={styles.btn} onPress={toogleMode}>
+                        <Text style={styles.emojiMode}>{mode}</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <InputBox />
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    )
 }
+
+export default App
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+    container: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    TopBox: {
+        width: '100%',
+        height: 150,
+        padding: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
+    },
+    h1: {
+        fontSize: 26,
+    },
+    h2: {
+        fontStyle: 'italic',
+    },
+    btn: {
+        padding: 6,
+        borderRadius: 10,
+        backgroundColor: '#F1FCFD',
+    },
+    emojiMode: {
+        fontSize: 24,
+    }
+})
