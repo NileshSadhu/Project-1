@@ -5,4 +5,5 @@ DoTask is a simple and intuitive To-Do List application built with [React Native
 ## Images 
 ## Screenshot
 
-<img src="![image1](https://github.com/user-attachments/assets/1fb36b6d-58b7-44c7-9aa7-5bbd03cdcb21)" alt="DoTask Screenshot" width="500"/>
+![image1](https://github.com/user-attachments/assets/1fb36b6d-58b7-44c7-9aa7-5bbd03cdcb21)
+![image2](https://github.com/user-attachments/assets/e813782f-69b1-40cf-9aa8-d09e6ac2a35b)
